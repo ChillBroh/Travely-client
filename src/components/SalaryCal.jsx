@@ -16,7 +16,7 @@ function SalaryCal() {
   const [NetSalary, setNetsalary] = useState("");
   const navigate = useNavigate();
 
-  const { data, loading, error } = useFetch("/employee");
+  const { data, loading, error } = useFetch("employee");
   const newdata = data;
   console.log("aaa");
   console.log(newdata);

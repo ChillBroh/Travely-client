@@ -24,7 +24,7 @@ const HotelReserve = ({
 
   const navigate = useNavigate();
   const [selectedRooms, setSelectedRooms] = useState([]);
-  const { data, loading, error } = useFetch(`/hotels/room/${hotelId}`);
+  const { data, loading, error } = useFetch(`hotels/room/${hotelId}`);
   const [totalPrice, setTotalPrice] = useState(0);
   const hotelName = data.name;
   const userName = user.name;

@@ -22,7 +22,7 @@ const keys = [
 
 const SalaryS = () => {
   const [query, setQuery] = useState("");
-  const { data, loading, error } = useFetch("/record");
+  const { data, loading, error } = useFetch("record");
   const navigate = useNavigate();
 
   function generatePDF(data) {

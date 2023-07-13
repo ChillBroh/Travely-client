@@ -10,7 +10,7 @@ export const UpdateHotel = () => {
   const location = useLocation();
   const id = location.pathname.split("/")[3];
 
-  const { data, loading, error } = useFetch(`/hotels/find/${id}`);
+  const { data, loading, error } = useFetch(`hotels/find/${id}`);
 
   const [name, setHotelName] = React.useState(data.name);
   const [title, setTitle] = React.useState(data.title);

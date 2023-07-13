@@ -10,7 +10,7 @@ import API_BASE_URL from "../utils/config";
 
 export const Employee = () => {
   const [query, setQuery] = useState("");
-  const { data, loading, error } = useFetch("/employee");
+  const { data, loading, error } = useFetch("employee");
   const navigate = useNavigate();
 
   const keys = [

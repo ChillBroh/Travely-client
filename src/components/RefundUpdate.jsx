@@ -7,7 +7,7 @@ import API_BASE_URL from "../utils/config";
 const RefundUpdate = () => {
   const { id } = useParams();
   console.log(id);
-  //const {data,loading,error}= useFetch(`/refund/get/${id}`)
+  //const {data,loading,error}= useFetch(`refund/get/${id}`)
 
   const [data, setData] = useState([]);
 

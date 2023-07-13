@@ -3,7 +3,7 @@ import useFetch from "../../hooks/useFetch";
 
 
 const HotelCard = () => {
-  const { data, loading, error } = useFetch(`/hotels`);
+  const { data, loading, error } = useFetch(`hotels`);
   
   return (
     <div className="w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-16 xl:px-20 py-8">

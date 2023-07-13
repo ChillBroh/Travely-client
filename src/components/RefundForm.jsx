@@ -11,7 +11,7 @@ import API_BASE_URL from "../utils/config";
 
 const RefundForm = () => {
   const [query, setQuery] = useState("");
-  const { data, loading, error } = useFetch("/refund");
+  const { data, loading, error } = useFetch("refund");
   const navigate = useNavigate();
 
   const keys = [
