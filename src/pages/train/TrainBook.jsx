@@ -15,7 +15,7 @@ const TrainBook = () => {
   useEffect(() => {
     const getOneTrain = () => {
       axios
-        .get(`${API_BASE_URL}//train/get/${id}`)
+        .get(`${API_BASE_URL}/train/get/${id}`)
         .then((res) => {
           setSingleTrain(res.data);
         })

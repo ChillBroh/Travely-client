@@ -19,7 +19,7 @@ const ReviewTickets = () => {
 
   useEffect(() => {
     axios
-      .get(`${API_BASE_URL}//seatBookings/get/${id}`)
+      .get(`${API_BASE_URL}/seatBookings/get/${id}`)
       .then((res) => {
         console.log(res.data);
         setSinglePassenger(res.data);
