@@ -1,4 +1,4 @@
-import React ,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import TrainHero from "../../components/train/TrainHero";
 import SearchBar from "../../components/train/SearchBar";
 import TrainCard from "../../components/train/TrainCard";
@@ -7,10 +7,8 @@ import BookTrainAd from "../../components/train/BookTrainAd";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 
-
 const TrainHome = () => {
-
-   /* const [trains,setTrains] = useState([]);
+  /* const [trains,setTrains] = useState([]);
 
     useEffect(()=>{
         const getAllTrain = ()=>{
@@ -25,41 +23,35 @@ const TrainHome = () => {
         getAllTrain();
     },[])*/
 
-    const location = useLocation();
-    const data = location.state;
+  const location = useLocation();
+  const data = location.state;
 
-    console.log("data",data);
+  console.log("data", data);
 
-
-
-    return (
-        <div>
-            <TrainHero />
-            <SearchBar />
-            <TrainListheader />
-            <div className="md:px-24">
-                <div className="flex flex-wrap flex-col md:flex-row lg:mx-16 gap-[30px]">
-                    {
-                        data?.map((item)=>(
-                            <TrainCard
-                                trainName ={item.trainName}
-                                from = {item.from}
-                                to = {item.to}
-                                arrivalTime={item.arrivalTime}
-                                depatureTime = {item.depatureTime}
-                                noOfSeats = {item.noOfSeats}
-                                id={item._id}
-                                price={item.price}
-                            />
-                        ))
-                    }
-                    
-                </div>
-            </div>
-            <BookTrainAd/>
-
+  return (
+    <div>
+      <TrainHero />
+      <SearchBar />
+      <TrainListheader />
+      <div className="md:px-24">
+        <div className="flex flex-wrap flex-col md:flex-row lg:mx-16 gap-[30px]">
+          {data?.map((item) => (
+            <TrainCard
+              trainName={item.trainName}
+              from={item.from}
+              to={item.to}
+              arrivalTime={item.arrivalTime}
+              depatureTime={item.depatureTime}
+              noOfSeats={item.noOfSeats}
+              id={item._id}
+              price={item.price}
+            />
+          ))}
         </div>
-    )
-}
+      </div>
+      <BookTrainAd />
+    </div>
+  );
+};
 
 export default TrainHome;

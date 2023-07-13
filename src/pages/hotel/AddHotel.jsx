@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import API_BASE_URL from "../../utils/config";
 
 export const AddHotel = () => {
   const navigate = useNavigate();
@@ -24,11 +25,8 @@ export const AddHotel = () => {
   const [hotelImgs, setHotelImgs] = useState([]);
   const [certificates, setCertificates] = React.useState([]);
 
-  
-  
   console.log(hotelImgs);
 
-  
   function sendData(e) {
     e.preventDefault();
 
@@ -40,13 +38,13 @@ export const AddHotel = () => {
       });
       return;
     }
-     if (isNaN(distance)) {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Enter distance in Km",
-        });
-         return;
+    if (isNaN(distance)) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Enter distance in Km",
+      });
+      return;
     }
     if (contactNumber.length !== 10) {
       Swal.fire({
@@ -85,29 +83,28 @@ export const AddHotel = () => {
     formData.append("cheapestPrice", price);
 
     axios
-      .post("/hotels", formData, {
+      .post(`${API_BASE_URL}/hotels`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       })
       .then(() => {
         Swal.fire({
-          position: 'top-start',
-          icon: 'success',
-          title: 'Hotel added Successfully',
+          position: "top-start",
+          icon: "success",
+          title: "Hotel added Successfully",
           showConfirmButton: false,
           timer: 2000,
-          
-        }) 
+        });
         navigate("/hotels");
       })
       .catch((err) => {
         Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
-          footer: err 
-        })
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: err,
+        });
       });
   }
 
@@ -461,8 +458,12 @@ export const AddHotel = () => {
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-8">
           SUBMIT
         </button>
-        <input class="bg-[#787878] hover:bg-[#474747] text-white font-bold py-2 px-4 rounded-full ml-5
-        " type="reset" value="Reset" />
+        <input
+          class="bg-[#787878] hover:bg-[#474747] text-white font-bold py-2 px-4 rounded-full ml-5
+        "
+          type="reset"
+          value="Reset"
+        />
       </form>
     </div>
   );

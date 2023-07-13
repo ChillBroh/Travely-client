@@ -3,15 +3,14 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import API_BASE_URL from "../../utils/config";
 
+export const UpdateHotel = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const id = location.pathname.split("/")[3];
 
-export const UpdateHotel= () => {
-
-    const navigate = useNavigate();
-const location=useLocation();
-    const id= location.pathname.split("/")[3];
-    
-    const {data, loading,error }=useFetch(`/hotels/find/${id}`)
+  const { data, loading, error } = useFetch(`/hotels/find/${id}`);
 
   const [name, setHotelName] = React.useState(data.name);
   const [title, setTitle] = React.useState(data.title);
@@ -24,56 +23,46 @@ const location=useLocation();
   const [description, setDescription] = React.useState(data.description);
   const [contactName, setContactName] = React.useState(data.contactName);
   const [contactNo, setContactNumber] = React.useState(data.contactNumber);
- // const [noOfRoomTypes, setNoOfRoomTypes] = React.useState("");
+  // const [noOfRoomTypes, setNoOfRoomTypes] = React.useState("");
   const [cheapestPrice, setprice] = React.useState(data.cheapestPrice);
-
-  
-
-  
-
-  
 
   function sendData(e) {
     e.preventDefault();
 
-    
-
     const updateHotel = {
-        name,
-        title,
-        type,
-        city,
-        province,
-        zip,
-        address,
-        distance,
-        description,
-        contactName,
-        contactNo,
-        cheapestPrice
-      };
+      name,
+      title,
+      type,
+      city,
+      province,
+      zip,
+      address,
+      distance,
+      description,
+      contactName,
+      contactNo,
+      cheapestPrice,
+    };
 
     axios
-      .put(`/hotels/${id}`,updateHotel) 
+      .put(`${API_BASE_URL}/hotels/${id}`, updateHotel)
       .then(() => {
         Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Your Hotel updated Successfully',
+          position: "top-end",
+          icon: "success",
+          title: "Your Hotel updated Successfully",
           showConfirmButton: false,
-          timer: 2000
-        }) 
-        navigate(`/hotels`)
-
+          timer: 2000,
+        });
+        navigate(`/hotels`);
       })
       .catch((err) => {
         Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong!',
-            footer: err 
-          })
-
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: err,
+        });
       });
   }
 
@@ -84,7 +73,10 @@ const location=useLocation();
         onSubmit={sendData}
         encType="multipart/form-data"
       >
-        <h1 className="text-2xl font-bold mb-8 mt-8">Update <span class='text-[#41A4FF]'>Hotel</span> and <span class='text-[#41A4FF]'>Join</span> with us</h1>
+        <h1 className="text-2xl font-bold mb-8 mt-8">
+          Update <span class="text-[#41A4FF]">Hotel</span> and{" "}
+          <span class="text-[#41A4FF]">Join</span> with us
+        </h1>
         <div class="flex flex-wrap -mx-3 mb-3">
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -137,7 +129,7 @@ const location=useLocation();
               id="hotelType"
               defaultValue={data.type}
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              onChange={(e) =>setHotelType(e.target.value)}
+              onChange={(e) => setHotelType(e.target.value)}
             >
               <option>Hotel</option>
               <option>Apartment</option>
@@ -211,7 +203,6 @@ const location=useLocation();
               id="zip"
               defaultValue={data.zip}
               type="text"
-              
               onChange={(e) => setZip(e.target.value)}
             />
           </div>
@@ -289,7 +280,6 @@ const location=useLocation();
           </div>
         </div>
 
-
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full px-3">
             <label
@@ -343,7 +333,6 @@ const location=useLocation();
           </div>
         </div> */}
 
-    
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-8">
           Update
         </button>

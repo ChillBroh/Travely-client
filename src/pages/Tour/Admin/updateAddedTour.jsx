@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { AuthContext } from "../../../context/authContext";
 import { useLocation } from "react-router-dom";
+import API_BASE_URL from "../../../utils/config";
 
 const AddTourPackage = () => {
   useEffect(() => {
@@ -77,7 +78,7 @@ const AddTourPackage = () => {
           );
         } else {
           const response = await axios.patch(
-            `/tours/${state.data.oneTour._id}`,
+            `${API_BASE_URL}/tours/${state.data.oneTour._id}`,
             {
               ...state, // Pass the entire state object to be updated
               currentUser,

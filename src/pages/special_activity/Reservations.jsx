@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import API_BASE_URL from "../../utils/config";
 
 function Reservation({ reservation, onCancel }) {
   const { _id, activity, status, dateRange, timeRange } = reservation;
@@ -33,14 +34,14 @@ function ReservationPage() {
   const [reservations, setReservations] = useState([]);
 
   useEffect(() => {
-    axios.get("reservations").then((response) => {
+    axios.get(`${API_BASE_URL}/reservations`).then((response) => {
       setReservations(response.data);
     });
   }, []);
 
   const cancelReservation = (reservationId) => {
     console.log(reservationId);
-    axios.delete(`reservations/${reservationId}`).then(() => {
+    axios.delete(`${API_BASE_URL}/reservations/${reservationId}`).then(() => {
       setReservations((prevReservations) =>
         prevReservations.filter(
           (reservation) => reservation._id !== reservationId

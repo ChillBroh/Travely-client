@@ -4,6 +4,7 @@ import jsPDF from "jspdf";
 import axios from "axios";
 import { DataGrid } from "@mui/x-data-grid";
 import CircularProgress from "@mui/material/CircularProgress";
+import API_BASE_URL from "../../utils/config";
 
 const MyActivities = () => {
   const navigate = useNavigate();
@@ -82,7 +83,9 @@ const MyActivities = () => {
   const fetchActivities = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get("activities/myActivities");
+      const response = await axios.get(
+        `${API_BASE_URL}/activities/myActivities`
+      );
       if (response.data.success) {
         setActivities(response.data.activities);
         console.log(response.data.activities);
@@ -102,7 +105,7 @@ const MyActivities = () => {
   const handleDelete = async (id) => {
     try {
       console.log(id);
-      await axios.delete(`/activities/${id}`);
+      await axios.delete(`${API_BASE_URL}/activities/${id}`);
       await fetchActivities();
     } catch (error) {
       console.log(error);

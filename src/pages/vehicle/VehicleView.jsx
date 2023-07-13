@@ -1,25 +1,25 @@
-
 import axios from "axios";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import API_BASE_URL from "../../utils/config";
 
 const VehicleBook = () => {
   const { state } = useLocation();
 
-  console.log(state)
+  console.log(state);
 
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
-  console.log("data to be send" + data)
+  console.log("data to be send" + data);
 
- // const { id } = useParams();
+  // const { id } = useParams();
 
   useEffect(() => {
     axios
-      .get(`/vehicle/${state._id}`)
+      .get(`${API_BASE_URL}/vehicle/${state._id}`)
       .then((response) => {
         setData(response.data);
         console.log(data.vehicleMainImg);
@@ -31,16 +31,15 @@ const VehicleBook = () => {
 
   const deleteHandler = () => {
     axios
-      .delete(`/vehicle/${state._id}`)
+      .delete(`${API_BASE_URL}/vehicle/${state._id}`)
       .then(() => {
         Swal.fire({
-          
           icon: "success",
           title: "Your Vehicle Deleted Successfully",
           showConfirmButton: false,
           timer: 2000,
-          
-        }); navigate('/vehicle')
+        });
+        navigate("/vehicle");
       })
       .catch((err) => {
         Swal.fire({
@@ -53,7 +52,7 @@ const VehicleBook = () => {
   };
 
   const editHandler = () => {
-    navigate(`/vehicle/edit/${state._id}`, {state : data});
+    navigate(`/vehicle/edit/${state._id}`, { state: data });
 
     // axios
     //   .patch(`/vehicle/${state._id}`)

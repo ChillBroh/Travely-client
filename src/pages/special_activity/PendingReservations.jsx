@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import API_BASE_URL from "../../utils/config";
 
 const PendingReservation = ({ reservation, handleApprove, handleDecline }) => {
   return (
@@ -39,7 +40,7 @@ const PendingReservationsPage = () => {
   const [pendingReservations, setPendingReservations] = useState([]);
   const fetchPendingReservations = async () => {
     try {
-      const response = await axios.get("reservations/pending");
+      const response = await axios.get(`${API_BASE_URL}/reservations/pending`);
       setPendingReservations(response.data.pendingReservations);
     } catch (err) {
       console.log(err);
@@ -47,7 +48,9 @@ const PendingReservationsPage = () => {
   };
   const handleDecline = async (reservation) => {
     try {
-      await axios.put(`reservations/decline/${reservation._id}`);
+      await axios.put(
+        `${API_BASE_URL}/reservations/decline/${reservation._id}`
+      );
       fetchPendingReservations();
     } catch (err) {
       console.log(err);
@@ -56,7 +59,9 @@ const PendingReservationsPage = () => {
 
   const handleApprove = async (reservation) => {
     try {
-      await axios.put(`reservations/approve/${reservation._id}`);
+      await axios.put(
+        `${API_BASE_URL}/reservations/approve/${reservation._id}`
+      );
       fetchPendingReservations();
     } catch (err) {
       console.log(err);

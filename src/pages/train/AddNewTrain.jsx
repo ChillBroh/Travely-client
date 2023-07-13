@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import API_BASE_URL from "../../utils/config";
 
 export default function AddNewTrain() {
-
   const navigate = useNavigate();
 
   const [trainName, setTrainName] = useState("");
@@ -39,7 +39,6 @@ export default function AddNewTrain() {
     };
 
     Swal.fire({
-      title: "Do you want to save the changes?",
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: "Save",
@@ -47,10 +46,10 @@ export default function AddNewTrain() {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .post("/train/add", newTrain)
+          .post(`${API_BASE_URL}/train/add`, newTrain)
           .then(() => {
             Swal.fire("Train has been successfully Saved!", "", "success");
-            navigate("/train")
+            navigate("/train");
           })
           .catch((err) => {
             Swal.fire({
@@ -63,21 +62,18 @@ export default function AddNewTrain() {
         Swal.fire("Details are not saved", "", "error");
       }
     });
-
-
   }
 
   return (
     <div>
-
-      <h1 className='uppercase text-center py-16 text-2xl md:text-3xl font-bold'>Add New Train</h1>
+      <h1 className="uppercase text-center py-16 text-2xl md:text-3xl font-bold">
+        Add New Train
+      </h1>
 
       <div className="bg-[#DEEFFF]">
         <div className="py-10 lg:py-20 px-16 lg:px-96 md:px-64 flex flex-col text-center">
-
           <form onSubmit={sendData}>
-
-            <div className="relative mb-3 mt-5" >
+            <div className="relative mb-3 mt-5">
               <input
                 type="text"
                 className="bordder-[#E9EDF4] w-full rounded-3xl border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-[#41A4FF] focus-visible:shadow-none"
@@ -91,7 +87,6 @@ export default function AddNewTrain() {
                 placeholder="Train Name"
                 required
                 maxLength={10}
-
               />
             </div>
 
@@ -159,7 +154,7 @@ export default function AddNewTrain() {
                 className="bordder-[#E9EDF4] w-full rounded-3xl border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-[#41A4FF] focus-visible:shadow-none"
                 id="date"
                 placeholder="Arrival Time"
-                min={new Date().toISOString().split('T')[0]}
+                min={new Date().toISOString().split("T")[0]}
                 onChange={(e) => {
                   setDate(e.target.value);
                 }}

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
+import API_BASE_URL from "../../utils/config";
 
 export const AddRoom = () => {
   const location = useLocation();
@@ -29,28 +30,26 @@ export const AddRoom = () => {
     };
 
     axios
-      .post(`/rooms/${hotelID}`, newRoom)
+      .post(`${API_BASE_URL}/rooms/${hotelID}`, newRoom)
 
       .then(() => {
         Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Room added Successfully',
+          position: "top-end",
+          icon: "success",
+          title: "Room added Successfully",
           showConfirmButton: false,
-          timer: 2000
-        }) 
+          timer: 2000,
+        });
       })
       .catch((err) => {
         Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
-          footer: err 
-        })
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: err,
+        });
       });
-     
   }
- 
 
   return (
     <div className="flex justify-center">
@@ -60,7 +59,9 @@ export const AddRoom = () => {
         id="createRoom"
         encType="multipart/form-data"
       >
-        <h1 className="text-2xl font-bold mb-8 mt-5">Customize Your <span class='text-[#41A4FF]'>Rooms</span></h1>
+        <h1 className="text-2xl font-bold mb-8 mt-5">
+          Customize Your <span class="text-[#41A4FF]">Rooms</span>
+        </h1>
         <div class="flex flex-wrap -mx-3 mb-3">
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -155,13 +156,17 @@ export const AddRoom = () => {
           </div>
         </div>
 
-       <div className="mb-5">
-          <button class="bg-[#41A4FF] hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full " >
-          SUBMIT
-        </button>
-        <input class="bg-[#787878] hover:bg-[#474747] text-white font-bold py-2 px-4 rounded-full ml-5 
-        " type="reset" value="Reset" />
-       </div>
+        <div className="mb-5">
+          <button class="bg-[#41A4FF] hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full ">
+            SUBMIT
+          </button>
+          <input
+            class="bg-[#787878] hover:bg-[#474747] text-white font-bold py-2 px-4 rounded-full ml-5 
+        "
+            type="reset"
+            value="Reset"
+          />
+        </div>
       </form>
     </div>
   );

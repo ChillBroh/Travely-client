@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { AiOutlineRight } from "react-icons/ai";
 import TourNav from "../../components/navbar/TourNav";
 import axios from "axios";
+import API_BASE_URL from "../../utils/config";
 
 const image = {
   backgroundImage:
@@ -20,7 +21,7 @@ const SerachResults = () => {
   useEffect(() => {
     const getTours = async () => {
       try {
-        const response = await axios.get("/tours");
+        const response = await axios.get(`${API_BASE_URL}/tours`);
         const tours = response.data.filter((tour) => {
           return (
             tour.cities.split(",").includes(destination) ||

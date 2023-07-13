@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { DataGrid } from "@mui/x-data-grid";
 import CircularProgress from "@mui/material/CircularProgress";
+import API_BASE_URL from "../../utils/config";
 
 const PendingActivities = () => {
   const navigate = useNavigate();
@@ -74,7 +75,7 @@ const PendingActivities = () => {
   const fetchActivities = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get("activities/pending");
+      const response = await axios.get(`${API_BASE_URL}/activities/pending`);
       if (response.data.success) {
         setActivities(response.data.activities);
       } else {
@@ -89,7 +90,9 @@ const PendingActivities = () => {
   const handleAccept = async (id) => {
     setIsLoading(true);
     try {
-      const response = await axios.put(`activities/approve/${id}`);
+      const response = await axios.put(
+        `${API_BASE_URL}/activities/approve/${id}`
+      );
       fetchActivities();
       console.log(response.data);
     } catch (error) {
@@ -101,7 +104,9 @@ const PendingActivities = () => {
   const handleDecline = async (id) => {
     setIsLoading(true);
     try {
-      const response = await axios.put(`activities/decline/${id}`);
+      const response = await axios.put(
+        `${API_BASE_URL}/activities/decline/${id}`
+      );
       fetchActivities();
       console.log(response.data);
     } catch (error) {

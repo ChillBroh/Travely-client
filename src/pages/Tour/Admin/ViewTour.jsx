@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
 import Swal from "sweetalert2";
+import API_BASE_URL from "../../../utils/config";
 
 const UpdateTour = () => {
   const { state } = useLocation();
@@ -23,7 +24,7 @@ const UpdateTour = () => {
 
     if (confirmResult.isConfirmed) {
       try {
-        await axios.delete(`/tours/${state.data.oneTour._id}`);
+        await axios.delete(`${API_BASE_URL}/tours/${state.data.oneTour._id}`);
         Swal.fire("Tour Deleted!", "", "success");
         navigate("/tours");
       } catch (err) {
