@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useReducer } from "react";
+import API_BASE_URL from "../utils/config";
 
 const INITIAL_STATE = {
   user: JSON.parse(localStorage.getItem("user")) || null,
@@ -49,7 +50,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const logout = () => {
     localStorage.removeItem("user"); // remove the user from localStorage
-    axios.get("/api/logout").then(() => {
+    axios.get(`${API_BASE_URL}/logout`).then(() => {
       // make a request to your backend to clear cookies and session
       dispatch({ type: "LOGOUT" }); // update the state to clear the user
     });

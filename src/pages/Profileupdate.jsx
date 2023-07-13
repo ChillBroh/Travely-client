@@ -5,6 +5,7 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 import moment from "moment";
 import Swal from "sweetalert2";
 import Spinner from "../components/spinner/LoadingSpinner";
+import API_BASE_URL from "../utils/config";
 
 const Profileupdate = () => {
   const { state } = useLocation();
@@ -31,7 +32,7 @@ const Profileupdate = () => {
     });
     if (confirmResult.isConfirmed) {
       try {
-        await axios.delete(`users/${state._id}`);
+        await axios.delete(`${API_BASE_URL}/users/${state._id}`);
         alert("deleted successfully!");
         navigate("/register");
       } catch (error) {
@@ -71,13 +72,16 @@ const Profileupdate = () => {
           );
           const { url } = uploadRes.data;
 
-          const response = await axios.put(`users/${state._id}`, {
-            ...state, // Pass the entire state object to be updated
-            name,
-            country,
-            mobile,
-            img: url,
-          });
+          const response = await axios.put(
+            `${API_BASE_URL}/users/${state._id}`,
+            {
+              ...state, // Pass the entire state object to be updated
+              name,
+              country,
+              mobile,
+              img: url,
+            }
+          );
           const data2 = response.data;
           // Update the state with the new details
           setName(data2.name);
@@ -89,12 +93,15 @@ const Profileupdate = () => {
 
           navigate("/login");
         } else {
-          const response = await axios.put(`users/${state._id}`, {
-            ...state, // Pass the entire state object to be updated
-            name,
-            country,
-            mobile,
-          });
+          const response = await axios.put(
+            `${API_BASE_URL}/users/${state._id}`,
+            {
+              ...state, // Pass the entire state object to be updated
+              name,
+              country,
+              mobile,
+            }
+          );
           const data2 = response.data;
           // Update the state with the new details
           setName(data2.name);

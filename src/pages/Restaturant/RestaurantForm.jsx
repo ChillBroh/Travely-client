@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import FileBase from "react-file-base64";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import API_BASE_URL from "../../utils/config";
 const RestaurantForm = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -60,7 +61,7 @@ const RestaurantForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/restaurant", {
+      await axios.post(`${API_BASE_URL}/restaurant`, {
         name: name,
         type: type, // Replace with a valid ActivityType _id
         staffAmount: staffAmount,

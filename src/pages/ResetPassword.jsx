@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import backgroundImage from "../assets/images/bg.jpg";
 import Spinner from "../components/spinner/LoadingSpinner";
 import { useLocation, useNavigate } from "react-router";
+import API_BASE_URL from "../utils/config";
 
 const ResetPassword = () => {
   const location = useLocation();
@@ -34,9 +35,12 @@ const ResetPassword = () => {
 
     try {
       setLoading2(true);
-      const response = await axios.post("auth/forgot-password", {
-        email: email,
-      });
+      const response = await axios.post(
+        `${API_BASE_URL}/auth/forgot-password`,
+        {
+          email: email,
+        }
+      );
       setToken(response.data.token);
       setLoading2(false);
       Swal.fire({
@@ -67,7 +71,7 @@ const ResetPassword = () => {
 
     try {
       setLoading2(true);
-      const response = await axios.post("auth/reset-password", {
+      const response = await axios.post(`${API_BASE_URL}/auth/reset-password`, {
         token: token2,
         password: password,
       });

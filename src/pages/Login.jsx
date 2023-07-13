@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import backgroundImage from "../assets/images/bg.jpg";
 import Spinner from "../components/spinner/LoadingSpinner";
+import API_BASE_URL from "../utils/config";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -35,7 +36,7 @@ const Login = () => {
     }
     try {
       setLoading2(true);
-      const res = await axios.post("auth/login", credentials);
+      const res = await axios.post(`${API_BASE_URL}/auth/login`, credentials);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
       setLoading2(false);
       if (res.data.isAdmin === true) {

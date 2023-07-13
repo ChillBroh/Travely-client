@@ -5,6 +5,7 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 import moment from "moment";
 import Swal from "sweetalert2";
 import Spinner from "../components/spinner/LoadingSpinner";
+import API_BASE_URL from "../utils/config";
 
 const UpdateuserA = () => {
   const { state } = useLocation();
@@ -54,15 +55,18 @@ const UpdateuserA = () => {
 
           const { url } = uploadRes.data;
 
-          const response = await axios.put(`users/${state._id}`, {
-            ...state, // Pass the entire state object to be updated
-            name,
-            country,
-            isAdmin,
-            type,
-            mobile,
-            img: url,
-          });
+          const response = await axios.put(
+            ` ${API_BASE_URL}/users/${state._id}`,
+            {
+              ...state, // Pass the entire state object to be updated
+              name,
+              country,
+              isAdmin,
+              type,
+              mobile,
+              img: url,
+            }
+          );
           const data2 = response.data;
           // Update the state with the new details
           setName(data2.name);
@@ -73,14 +77,17 @@ const UpdateuserA = () => {
           setLoading2(false);
           navigate("/users");
         } else {
-          const response = await axios.put(`users/${state._id}`, {
-            ...state, // Pass the entire state object to be updated
-            name,
-            country,
-            type,
-            isAdmin,
-            mobile,
-          });
+          const response = await axios.put(
+            `${API_BASE_URL}/users/${state._id}`,
+            {
+              ...state, // Pass the entire state object to be updated
+              name,
+              country,
+              type,
+              isAdmin,
+              mobile,
+            }
+          );
           const data2 = response.data;
           // Update the state with the new details
           setName(data2.name);

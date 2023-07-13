@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Spinner from "../components/spinner/LoadingSpinner";
+import API_BASE_URL from "../utils/config";
 
 const Adduser = () => {
   //const { data } = useFetch("users");
@@ -89,7 +90,7 @@ const Adduser = () => {
 
           const { url } = uploadRes.data; //
 
-          const response = await axios.post("auth/register", {
+          const response = await axios.post(`${API_BASE_URL}/auth/register`, {
             name,
             email,
             mobile,
@@ -104,7 +105,7 @@ const Adduser = () => {
           navigate("/users");
           // success message from server
         } else {
-          const response = await axios.post("auth/register", {
+          const response = await axios.post(`${API_BASE_URL}/auth/register`, {
             name,
             email,
             mobile,

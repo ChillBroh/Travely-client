@@ -5,6 +5,7 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 import Swal from "sweetalert2";
 import backgroundImage from "../assets/images/bg.jpg";
 import Spinner from "../components/spinner/LoadingSpinner";
+import API_BASE_URL from "../utils/config";
 
 const Register = () => {
   const [loading2, setLoading2] = useState(false);
@@ -71,7 +72,9 @@ const Register = () => {
     setLoading2(true);
 
     try {
-      const existingUser = await axios.get(`auth/check-email?email=${email}`);
+      const existingUser = await axios.get(
+        `${API_BASE_URL}/auth/check-email?email=${email}`
+      );
 
       if (existingUser.data.message === "Email already exists") {
         Swal.fire({
@@ -95,7 +98,7 @@ const Register = () => {
 
         const { url } = uploadRes.data;
 
-        const response = await axios.post("auth/register", {
+        const response = await axios.post(`${API_BASE_URL}/auth/register`, {
           name,
           email,
           mobile,
@@ -112,7 +115,7 @@ const Register = () => {
         );
         navigate("/login");
       } else {
-        const response = await axios.post("auth/register", {
+        const response = await axios.post(`${API_BASE_URL}/auth/register`, {
           name,
           email,
           mobile,

@@ -1,30 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Swal from 'sweetalert2';
-import useFetch from '../hooks/useFetch';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
+import useFetch from "../hooks/useFetch";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
- 
+import API_BASE_URL from "../utils/config";
 const RefundUpdate = () => {
+  const { id } = useParams();
+  console.log(id);
+  //const {data,loading,error}= useFetch(`/refund/get/${id}`)
 
-   const {id}=useParams();
-    console.log(id)
-    //const {data,loading,error}= useFetch(`/refund/get/${id}`)
+  const [data, setData] = useState([]);
 
-   const[data,setData]=useState([]);
-
-    useEffect(() => {
+  useEffect(() => {
     axios
-      .get(`/refund/get/${id}`)
+      .get(`${API_BASE_URL}/refund/get/${id}`)
       .then((response) => {
         setData(response.data);
-       
       })
       .catch((err) => {
         console.log(err);
-      });
-  }, []);
+      });
+  }, []);
 
-   console.log(data)
+  console.log(data);
   const [Name, setName] = useState(data.Name);
   const [Email, setEmail] = useState(data.Email);
   const [Requested_Date, setReqDate] = useState(data.Requested_Date);
@@ -40,31 +38,31 @@ const RefundUpdate = () => {
       Requested_Date,
       Package_name,
       BookingId,
-      Additional_note
+      Additional_note,
     };
 
     Swal.fire({
-      title: 'Do you want to Update refund details?',
+      title: "Do you want to Update refund details?",
       showDenyButton: true,
       showCancelButton: true,
-      confirmButtonText: 'Submit',
+      confirmButtonText: "Submit",
       denyButtonText: `Don't Submit`,
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .put(`/refund/update/${id}`, updateRefund)
+          .put(`${API_BASE_URL}/refund/update/${id}`, updateRefund)
           .then(() => {
-            Swal.fire('Refund has been successfully Update!', '', 'success');
+            Swal.fire("Refund has been successfully Update!", "", "success");
           })
           .catch((err) => {
             Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
+              icon: "error",
+              title: "Oops...",
               text: err.message,
             });
           });
       } else if (result.isDenied) {
-        Swal.fire('Details are not saved', '', 'error');
+        Swal.fire("Details are not saved", "", "error");
       }
     });
   };
@@ -77,7 +75,6 @@ const RefundUpdate = () => {
             <h2 className="text-base font-semibold leading-7 text-gray-900 text-center text-3xl">
               Refund Request Form
             </h2>
-           
             {/* name */}
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
               <div className="sm:col-span-4">
@@ -198,7 +195,6 @@ const RefundUpdate = () => {
                       id="bookid"
                       defaultValue={data.BookingId}
                       className="p-2 block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    
                       onChange={(e) => {
                         setBookID(e.target.value);
                       }}
@@ -207,7 +203,7 @@ const RefundUpdate = () => {
                 </div>
               </div>
             </div>
-            {/* additional note */}{' '}
+            {/* additional note */}{" "}
             <div className="col-span-full mt-10  gap-x-6 gap-y-8 sm:grid-cols-6">
               <label
                 htmlFor="note"
@@ -238,7 +234,7 @@ const RefundUpdate = () => {
             Cancel
           </button>
           <button
-          onClick={sentData}
+            onClick={sentData}
             type="submit"
             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
@@ -250,4 +246,4 @@ const RefundUpdate = () => {
   );
 };
 
-export default RefundUpdate;
+export default RefundUpdate;

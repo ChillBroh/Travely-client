@@ -4,6 +4,7 @@ import TourNav from "../navbar/TourNav";
 import HeroTour from "../../pages/Tour/HeroTour";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import API_BASE_URL from "../../utils/config";
 
 import { useLocation } from "react-router-dom";
 
@@ -18,7 +19,7 @@ const Beach = () => {
 
   const getTours = async () => {
     try {
-      const response = await axios.get("/tours");
+      const response = await axios.get(`${API_BASE_URL}/tours`);
       const tours = response.data.filter((tour) => {
         const category = tour.category.toLowerCase().replace(/\s+/g, "");
         console.log("category", category);
