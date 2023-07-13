@@ -21,7 +21,9 @@ const VehicleBook = () => {
       try {
         const [vehicleResponse, reservationResponse] = await Promise.all([
           axios.get(`${API_BASE_URL}/vehicle/${id}`),
-          axios.get(`/vehiclereservation/traveler/vehicles/${id}`),
+          axios.get(
+            `${API_BASE_URL}/vehiclereservation/traveler/vehicles/${id}`
+          ),
         ]);
 
         // modify the reservation data format to match the input type of date fields
@@ -60,7 +62,7 @@ const VehicleBook = () => {
     <div className="lg:p-20">
       <div className="flex justify-center items-center w-full flex-col lg:flex-row pt-12 lg:pt-0">
         <img
-          src={`http://localhost:5000/api/vehicle/images/${data.vehicleMainImg}`}
+          src={`${API_BASE_URL}/vehicle/images/${data.vehicleMainImg}`}
           alt="vehMainImg"
           className="w-[320px] md:w-[700px] lg:w-[600px] rounded-lg"
         />

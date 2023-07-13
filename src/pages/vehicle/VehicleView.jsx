@@ -68,7 +68,7 @@ const VehicleBook = () => {
     <div className="lg:p-24 ">
       <div className="flex justify-center items-center w-full flex-col lg:flex-row pt-12 lg:pt-0">
         <img
-          src={`http://localhost:5000/api/vehicle/images/${state.vehicleMainImg}`}
+          src={`${API_BASE_URL}/vehicle/images/${state.vehicleMainImg}`}
           alt="vehMainImg"
           className="w-[320px] md:w-[700px] lg:w-[600px] rounded-lg"
         />
