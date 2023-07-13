@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import API_BASE_URL from "../../../utils/config";
 
 const ServiceCard = () => {
   const [allTours, setTour] = useState([]);
   useEffect(() => {
     const getTours = async () => {
       try {
-        const response = await axios.get("/tours");
+        const response = await axios.get(`${API_BASE_URL}/tours`);
         console.log(response.data);
         setTour(response.data);
       } catch (err) {
