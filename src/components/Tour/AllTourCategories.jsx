@@ -18,7 +18,9 @@ const Beach = () => {
 
   const getTours = async () => {
     try {
-      const response = await axios.get("/tours");
+      const response = await axios.get(
+        "https://travely-43dfb076364f.herokuapp.com/api/tours"
+      );
       const tours = response.data.filter((tour) => {
         const category = tour.category.toLowerCase().replace(/\s+/g, "");
         console.log("category", category);
