@@ -4,8 +4,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import FileBase from "react-file-base64";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
+import API_BASE_URL from "../../utils/config";
 
-import axios from 'axios';
+import axios from "axios";
 
 const ActivityForm = () => {
   const navigate = useNavigate();
@@ -94,7 +95,7 @@ const ActivityForm = () => {
     try {
       setIsLoading(true);
       if (isEditing) {
-        await axios.post("/activities", {
+        await axios.post(`${API_BASE_URL}/activities`, {
           id: locationRoute.state.activity._id,
           name: name,
           location: location,
@@ -111,7 +112,7 @@ const ActivityForm = () => {
           image: image,
         });
       } else {
-        await axios.post("/activities", {
+        await axios.post(`${API_BASE_URL}/activities`, {
           name: name,
           location: location,
           dateRange: {

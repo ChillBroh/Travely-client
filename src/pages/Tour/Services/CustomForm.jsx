@@ -13,6 +13,7 @@ import { BsFillTelephoneOutboundFill } from "react-icons/bs";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { AuthContext } from "../../../context/authContext";
+import API_BASE_URL from "../../../utils/config";
 
 const number = [1, 2, 3, 5, 7, 9, 12];
 const CustomForm = () => {
@@ -54,7 +55,10 @@ const CustomForm = () => {
 
         if (result.isConfirmed) {
           console.log(newForm);
-          const response = await axios.post("/tours/customform", newForm);
+          const response = await axios.post(
+            `${API_BASE_URL}/tours/customform`,
+            newForm
+          );
           Swal.fire(response.data.message, "", "success");
         } else if (result.isDenied) {
           Swal.fire("Details are not saved", "", "error");

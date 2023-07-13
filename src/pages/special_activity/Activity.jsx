@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import API_BASE_URL from "../../utils/config";
 
 const Activity = () => {
   const { id } = useParams();
@@ -14,7 +15,7 @@ const Activity = () => {
   useEffect(() => {
     const getActivity = async () => {
       try {
-        const response = await axios.get(`/activities/${id}`);
+        const response = await axios.get(`${API_BASE_URL}/activities/${id}`);
         console.log(response.data);
         setActivity(response.data);
       } catch (error) {
@@ -68,7 +69,7 @@ const Activity = () => {
 
     try {
       console.log(id);
-      const response = await axios.post(`/reservations/create`, {
+      const response = await axios.post(`${API_BASE_URL}/reservations/create`, {
         activity_id: id,
         startDate,
         startTime,

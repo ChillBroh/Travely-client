@@ -9,6 +9,7 @@ import InclusionExclusion from "../../components/Tour/InclusionExclusion";
 import { AuthContext } from "../../context/authContext";
 import Swal from "sweetalert2";
 import axios from "axios";
+import API_BASE_URL from "../../utils/config";
 
 const TourDetails = () => {
   const { id } = useParams();
@@ -23,7 +24,7 @@ const TourDetails = () => {
   useEffect(() => {
     const getTours = async () => {
       try {
-        const response = await axios.get(`/tours/${id}`);
+        const response = await axios.get(`${API_BASE_URL}/tours/${id}`);
         console.log(response.data.data.oneTour);
         setTour(response.data.data.oneTour);
       } catch (err) {

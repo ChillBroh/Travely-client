@@ -5,6 +5,7 @@ import { Ripple, initTE } from "tw-elements";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { AuthContext } from "../../../context/authContext";
+import API_BASE_URL from "../../../utils/config";
 
 const AddTourPackage = () => {
   useEffect(() => {
@@ -69,7 +70,7 @@ const AddTourPackage = () => {
 
         const { url } = uploadRes.data;
 
-        const response = await axios.post("/tours", {
+        const response = await axios.post(`${API_BASE_URL}/tours`, {
           currentUser,
           img: url,
           name,

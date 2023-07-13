@@ -6,6 +6,7 @@ import axios from "axios";
 import "./datatable.scss";
 import Swal from "sweetalert2";
 import CircularProgress from "@mui/material/CircularProgress";
+import API_BASE_URL from "../../utils/config";
 
 const Datatable = ({ columns }) => {
   const location = useLocation();
@@ -53,15 +54,15 @@ const Datatable = ({ columns }) => {
   const handleview = async (id) => {
     try {
       if (path === "users") {
-        const userdata = await axios.get(`${path}/${id}`);
+        const userdata = await axios.get(`${API_BASE_URL}/${path}/${id}`);
         navigate("/userpage", { state: userdata.data });
       }
       if (path === "hotels") {
-        const hoteldata = await axios.get(`${path}/find/${id}`);
+        const hoteldata = await axios.get(`${API_BASE_URL}/${path}/find/${id}`);
         navigate("/hoteladmin", { state: hoteldata.data });
       }
       if (path === "vehicle") {
-        const vehicledata = await axios.get(`${path}/${id}`);
+        const vehicledata = await axios.get(`${API_BASE_URL}/${path}/${id}`);
         navigate("/vehicle/view/", { state: vehicledata.data });
       }
       //path tour
