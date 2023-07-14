@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-
+import API_BASE_URL from "../../utils/config";
 
 const HotelCard = () => {
   const { data, loading, error } = useFetch(`hotels`);
-  
+
   return (
     <div className="w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-16 xl:px-20 py-8">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -18,7 +18,7 @@ const HotelCard = () => {
                 key={item.id}
               >
                 <img
-                  src={`hotels/images/${item.HotelImg}`}
+                  src={`${API_BASE_URL}/hotels/images/${item.HotelImg}`}
                   alt=""
                   className="w-full object-cover h-64"
                 />
@@ -31,10 +31,13 @@ const HotelCard = () => {
                     Starting from Rs.{item.cheapestPrice}
                   </p>
                   <div className="flex items-center">
-                  <Link to ={`/hotelOverview/${item._id}`}>
-                    <button className="bg-blue-700 text-white font-bold px-3 py-1 rounded mr-2" type="button">
-                      View
-                    </button>
+                    <Link to={`/hotelOverview/${item._id}`}>
+                      <button
+                        className="bg-blue-700 text-white font-bold px-3 py-1 rounded mr-2"
+                        type="button"
+                      >
+                        View
+                      </button>
                     </Link>
                   </div>
                 </div>
