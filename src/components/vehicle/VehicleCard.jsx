@@ -7,7 +7,7 @@ const VehicleCard = (props) => {
   return (
     <div className="flex flex-col w-[300px] md:w-[300px] items-center border shadow-lg m-auto mb-8  rounded-lg bg-white">
       <img
-        src={`${API_BASE_URL}vehicle/images/${props.vehicleMainImg}`}
+        src={`${API_BASE_URL}/vehicle/images/${props.vehicleMainImg}`}
         alt="vehicle"
         className="rounded-lg"
       />
