@@ -10,6 +10,7 @@ import { AuthContext } from "../../context/authContext";
 import Swal from "sweetalert2";
 import axios from "axios";
 import API_BASE_URL from "../../utils/config";
+import { useNavigate } from "react-router-dom";
 
 const TourDetails = () => {
   const { id } = useParams();
@@ -19,8 +20,9 @@ const TourDetails = () => {
   const [date, setDate] = useState("");
   const [phone, setPhone] = useState(0);
   const [guestCount, setGuests] = useState("");
-
+  const navigate = useNavigate();
   const [allTours, setTour] = useState([]);
+
   useEffect(() => {
     const getTours = async () => {
       try {
@@ -35,8 +37,6 @@ const TourDetails = () => {
     initTE({ Stepper, initTE, Ripple, Input, Datepicker });
   }, [id]);
   //get email of current user
-  const { user } = useContext(AuthContext);
-  const currentUser = user.email;
 
   const inputHandler = async (e) => {
     e.preventDefault();
@@ -74,7 +74,6 @@ const TourDetails = () => {
       return;
     }
     const tourReservation = {
-      currentUser,
       firstName,
       lastName,
       date,
