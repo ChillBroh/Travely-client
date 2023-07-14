@@ -7,7 +7,7 @@ const SearchBar = () => {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
 
-  const { data } = useFetch(`train/fetch${from}/${to}`);
+  const { data } = useFetch(`train/fetch/${from}/${to}`);
 
   console.log(data);
 
