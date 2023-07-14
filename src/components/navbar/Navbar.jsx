@@ -22,17 +22,13 @@ const inside_nav = [
     display: "Vehicles",
   },
   {
-    path: "/Restaurants",
-    display: "Restaurants",
-  },
-  {
     path: "/events",
     display: "Events",
   },
   {
     path: "/TrainHome",
     display: "Trains",
-  }
+  },
 ];
 
 const Navbar = () => {
