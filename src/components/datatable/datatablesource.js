@@ -58,7 +58,7 @@ export const vehicleColumns = [
           <img
             className="cellImg"
             src={
-              `vehicle/images/${params.row.vehicleMainImg}` ||
+              `${API_BASE_URL}vehicle/images/${params.row.vehicleMainImg}` ||
               "https://i.ibb.co/MBtjqXQ/no-avatar.gif"
             }
             alt="avatar"
