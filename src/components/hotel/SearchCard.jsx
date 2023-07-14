@@ -1,5 +1,6 @@
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import API_BASE_URL from "../../utils/config";
 
 
 const SearchCard = (item) => {
@@ -29,7 +30,7 @@ const SearchCard = (item) => {
                 key={item.id}
               >
                 <img
-                  src={`hotels/images/${item.HotelImg}`}
+                  src={`${API_BASE_URL}/hotels/images/${item.HotelImg}`}
                   alt=""
                   className="w-full object-cover h-64"
                 />

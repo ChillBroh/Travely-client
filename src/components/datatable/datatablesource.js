@@ -162,7 +162,7 @@ export const hotelColumns = [
           <img
             className="cellImg"
             src={
-              `hotels/images/${params.row.HotelImg}` ||
+              `${API_BASE_URL}/hotels/images/${params.row.HotelImg}` ||
               "https://i.ibb.co/MBtjqXQ/no-avatar.gif"
             }
             alt="avatar"
