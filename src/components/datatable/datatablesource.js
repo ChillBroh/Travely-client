@@ -1,3 +1,4 @@
+import API_BASE_URL from "../../utils/config";
 //columns for the user table
 export const userColumns = [
   // { field: "_id", headerName: "ID", width: 250 },
